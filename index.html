@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send POST Request</title>
+</head>
+<body>
+
+<button id="sendButton">Send POST Request</button>
+
+<script>
+document.getElementById("sendButton").addEventListener("click", function() {
+    // Your data
+    var employee_id = '000224450';
+    var password = '$Plmnko123$';
+    var android_id = '6367e0d113c705ec';
+    var version = 20;
+    var fcm_token = '';
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Configure it: POST-request for the specified URL
+    xhr.open('POST', 'https://hcapi.wom.co.id/api/login', true);
+
+    // Set the request headers
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Define the data to be sent
+    var data = 'employee_id=' + encodeURIComponent(employee_id) +
+               '&password=' + encodeURIComponent(password) +
+               '&android_id=' + encodeURIComponent(android_id) +
+               '&version=' + encodeURIComponent(version) +
+               '&fcm_token=' + encodeURIComponent(fcm_token);
+
+    // Set up a function to handle the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // The request was successful, and the response is available in xhr.responseText
+            console.log(xhr.responseText);
+        }
+    };
+
+    // Send the request with the data
+    xhr.send(data);
+});
+</script>
+
+</body>
+</html>
